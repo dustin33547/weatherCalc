@@ -1,0 +1,88 @@
+<html>
+<head>
+<title>Weather Calculator</title>
+<!-- Include meta tag to ensure proper rendering and touch zooming -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Include jQuery Mobile stylesheets -->
+<link rel="stylesheet" href="jquery.mobile-1.4.5.min.css">
+
+<!-- Include the jQuery library -->
+<script src="jquery-1.11.3.min.js"></script>
+
+<!-- Include the jQuery Mobile library -->
+<script src="jquery.mobile-1.4.5.min.js"></script>
+<script src='responsivevoice.js'></script>
+<script>
+
+    function weatherCalc(){
+      var hum1 = document.getElementById("humidity").value;
+      var temp1 = document.getElementById("temp").value;
+      var press1 = document.getElementById("press").value;
+      var cloud1 = document.getElementById("cloud").value;
+      var totalWeather = parseFloat(hum1) + parseFloat(temp1) + parseFloat(press1) + parseFloat(cloud1);
+      
+      if (totalWeather <= 100) {
+        // alert(totalWeather + " Rain is not likely");
+        responsiveVoice.speak("Rain is not likely", "UK English Female");
+      }
+      
+      else if (totalWeather <= 250) {
+        // alert(totalWeather + " Possibility of rain");
+        responsiveVoice.speak("There is a possibility of rain", "UK English Female");
+        
+      }
+      else if (totalWeather <= 400) {
+        // alert(totalWeather + " High chance of rain");
+        responsiveVoice.speak("There is a high chance of rain today", "UK English Female");
+        
+      }
+      else if (totalWeather > 400)  {
+        responsiveVoice.speak(" Something is wrong. Please check your numbers again.", "UK English Female");
+        
+        
+      }
+    }
+    function clearAll(){
+      location.reload();
+    }
+      
+</script>
+
+<style>
+
+</style>
+
+
+</head>
+
+<body>
+
+<div data-role="page" data-theme="b">
+
+<div data-role="header">
+<h1>Weather Calculator</h1>
+</div>
+<p>
+
+<!--<br> <input class="" type="text"  id="humidity" name="humidity" value="" placeholder="Humidity"><br>
+<br> <input class="" type="text" id="temp" name="temp" value="" placeholder="Temperature"><br>
+<br> <input class="" type="text" id="press" name="press" value="" placeholder="Pressure"><br>
+<br> <input class="" type="text" id="cloud" name="cloud" value="" placeholder="Cloud Cover"><br><br>-->
+<br>
+Humidity:<br>
+<input type="range" id="humidity" value="50" min="0" max="100" data-popup-enabled="true"><br>
+Temp:<br>
+<input type="range" id="temp" value="50" min="0" max="100" data-popup-enabled="true"><br>
+Pressure:<br>
+<input type="range" id="press" value="50" min="0" max="100" data-popup-enabled="true"><br>
+Cloud Coverage:<br>
+<input type="range" id="cloud" value="50" min="0" max="100" data-popup-enabled="true"><br>
+
+<button class="ui-btn" onclick="weatherCalc()">Calculate</button>
+<button class="" onclick="clearAll()">Reset</button>
+
+</p>
+</div>
+</body>
+</html>
